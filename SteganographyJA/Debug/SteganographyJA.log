@@ -1,0 +1,3 @@
+﻿  main.cpp
+  main.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
+  SteganographyJA.vcxproj -> C:\Users\Mateusz\source\repos\steganography-asm\Debug\SteganographyJA.exe
