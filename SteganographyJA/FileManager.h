@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <direct.h>
 #include <msclr\marshal_cppstd.h>
@@ -12,6 +12,9 @@ using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
 
+//Klasa zarządzająca plikami .bmp oraz .txt
+//posiada metody do zapisu, odczytu, oraz operacji na owych plikach
+//oraz ich parametry
 public ref class FileManager
 {
 private:
