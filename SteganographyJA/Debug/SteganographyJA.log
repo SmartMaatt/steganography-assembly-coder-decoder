@@ -1,7 +1,5 @@
-﻿  FileManager.cpp
-c:\users\mateusz\source\repos\japrojekt\steganographyja\filemanager.cpp(68): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-  main.cpp
-c:\users\mateusz\source\repos\japrojekt\steganographyja\myform.h(596): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-  Generowanie kodu...
+﻿  main.cpp
+c:\users\mateusz\source\repos\steganography\steganographyja\myform.h(546): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
+c:\users\mateusz\source\repos\steganography\steganographyja\myform.h(562): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
   FileManager.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
-  SteganographyJA.vcxproj -> C:\Users\Mateusz\source\repos\JaProjekt\Debug\SteganographyJA.exe
+  SteganographyJA.vcxproj -> C:\Users\Mateusz\source\repos\Steganography\Debug\SteganographyJA.exe
