@@ -1,5 +1,6 @@
-﻿  main.cpp
-c:\users\mateusz\source\repos\steganography\steganographyja\myform.h(561): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-c:\users\mateusz\source\repos\steganography\steganographyja\myform.h(579): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
-  FileManager.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
+﻿  FileManager.cpp
+c:\users\mateusz\source\repos\steganography\steganographyja\filemanager.cpp(78): warning C4267: "=": konwersja z "size_t" do "int", możliwa utrata danych
+c:\users\mateusz\source\repos\steganography\steganographyja\filemanager.cpp(76): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: zobacz deklarację „strcpy”
+  AlgorythmManager.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
   SteganographyJA.vcxproj -> C:\Users\Mateusz\source\repos\Steganography\x64\Debug\SteganographyJA.exe

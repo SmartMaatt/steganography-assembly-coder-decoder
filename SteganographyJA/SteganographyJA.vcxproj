@@ -133,10 +133,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlgorythmManager.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlgorythmManager.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>

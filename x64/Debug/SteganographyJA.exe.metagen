@@ -22,10 +22,17 @@ Class FileManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     readTxt(String): PrivateScope, Public, HideBySig
     getBmpSize(): PrivateScope, Public, HideBySig
     getTxtLength(): PrivateScope, Public, HideBySig
+    getBmpKey(): PrivateScope, Public, HideBySig
+    getText(): PrivateScope, Public, HideBySig
+    increseBmpKey(): PrivateScope, Public, HideBySig
+    deleteData(): PrivateScope, Public, HideBySig
+Class AlgorythmManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    operateDecode(Object): PrivateScope, Public, HideBySig
+    operateEncode(Object): PrivateScope, Public, HideBySig
 Class SteganographyJA.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     FileManager fileMan : Public
-    System.String NoPhotoPath : Public
-    Boolean NoPhoto : Public

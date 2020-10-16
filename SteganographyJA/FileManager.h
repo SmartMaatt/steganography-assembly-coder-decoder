@@ -19,7 +19,7 @@ public ref class FileManager
 {
 private:
 	int width, height, size, txtLenght;
-	char *bmpData, *txtData, *headerInfo;
+	char *bmpData, *bmpKey, *txtData, *headerInfo;
 
 public:
 	FileManager();
@@ -29,15 +29,15 @@ public:
 
 	int getBmpSize();
 	int getTxtLength();
+	char* getBmpKey();
+	char* getText();
+	void increseBmpKey();
+
+	void deleteData();
 
 	/*
 	void saveBmp(string filename);
 	void saveTxt(string filename);
 	void setTxtData(char* newData);
-	void deleteData();
-
-
-	unsigned char* getBmpData();
-	char* getTxtData();
 	*/
 };

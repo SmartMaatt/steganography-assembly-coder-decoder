@@ -53,6 +53,7 @@ bool FileManager::readBmp(String^ adres)
 	{
 		bmpData = new char[size]; // 3 bajty na piksel
 		fread(bmpData, sizeof(char), size, f); // zczytanie reszty pliku
+		bmpKey = bmpData; //Zachowanie wskaźnika na pierwszy element tablicy
 		success = true;
 	}
 	else delete[] headerInfo; //Zwolnienie pamięci headerInfo
@@ -72,7 +73,8 @@ bool FileManager::readTxt(String^ adres)
 	if(loaded_file_std.length() < (this->size)/8)	//Sprawdzenie czy tekst zmieści się w zdjęciu
 	{
 		this->txtData = new char[loaded_file_std.length() + 1];	//Alokacja miejsca na tekst
-		this->txtData[loaded_file_std.length() + 1] = '\0';	//Dodanie znaku końca łańcucha
+		strcpy(this->txtData, loaded_file_std.c_str());	//Przypisanie wartosci do char*
+		this->txtData[loaded_file_std.length()] = '\0';	//Dodanie znaku końca łańcucha
 		this->txtLenght = loaded_file_std.length();	//Zapis długości tekstu
 		succes = true;
 	}
@@ -85,3 +87,19 @@ int FileManager::getBmpSize() { return this->size; }
 
 //Zwraca długość tekstu .txt
 int FileManager::getTxtLength() { return this->txtLenght; }
+
+//Zwraca wskaźnik na klucz
+char* FileManager::getBmpKey() { return this->bmpKey; }
+
+//Zwraca zawartość pliku tekstowego
+char* FileManager::getText() { return this->txtData; }
+
+//Przesuwa wskaźnik na klucz
+void FileManager::increseBmpKey() { this->bmpKey = this->bmpKey + 8; }
+
+//Usuwa dynamicznie zaalokowaną pamięć
+void FileManager::deleteData()
+{
+	delete [] this->bmpData;
+	delete [] this->txtData;
+}
