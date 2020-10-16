@@ -26,7 +26,7 @@ void AlgorythmManager::operateEncode(Object^ parameter)
 	FileManager^ fileMan = params->Item1;
 
 	if (params->Item2) // jeœli wybrano bibliotekê cpp
-		std::cout << "Leci cpp kodowanie " << fileMan->getText()[params->Item3] << std::endl;
+		std::cout << "Leci cpp kodowanie " << params->Item3 << std::endl;
 		//cppSteganographyEncode();
 	else
 		std::cout << "Leci asm kodowanie " << fileMan->getText()[params->Item3] << std::endl;

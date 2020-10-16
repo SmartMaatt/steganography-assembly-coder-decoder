@@ -103,3 +103,17 @@ void FileManager::deleteData()
 	delete [] this->bmpData;
 	delete [] this->txtData;
 }
+
+//Zapisanie obrazu do .bmp
+void FileManager::saveBmp(string filename)
+{
+	//Konwersja na char*
+	const char *cfilename = filename.c_str();
+
+	// zapisanie do pliku
+	FILE* f;
+	fopen_s(&f, cfilename, "wb");
+	fwrite(this->headerInfo, sizeof(unsigned char), 54, f);
+	fwrite(this->bmpData, sizeof(unsigned char), size, f);
+	fclose(f);
+}

@@ -26,6 +26,7 @@ Class FileManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     getText(): PrivateScope, Public, HideBySig
     increseBmpKey(): PrivateScope, Public, HideBySig
     deleteData(): PrivateScope, Public, HideBySig
+    saveBmp(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig
 Class AlgorythmManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:

@@ -34,9 +34,9 @@ public:
 	void increseBmpKey();
 
 	void deleteData();
+	void saveBmp(string filename);
 
 	/*
-	void saveBmp(string filename);
 	void saveTxt(string filename);
 	void setTxtData(char* newData);
 	*/
