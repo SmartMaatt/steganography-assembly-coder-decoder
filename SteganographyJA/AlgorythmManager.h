@@ -3,6 +3,7 @@
 #include <iostream>
 #include <msclr\marshal_cppstd.h>
 #include "FileManager.h"
+#include "cppSteganography.h"
 
 /*TUTAJ BĘDZIE IMPLEMENTACJA FUNKCJI ASM*/
 

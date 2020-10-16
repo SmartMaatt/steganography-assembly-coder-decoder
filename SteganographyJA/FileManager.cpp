@@ -21,12 +21,12 @@ String^ FileManager::readFile(System::Object^ sender, System::EventArgs^ e, bool
 			String^ file_adres = dialog->InitialDirectory + dialog->FileName;	//Odczyt adres pliku
 			myStream->Close();	//Zamknięcie strumienia
 
-			if (bmp) { if (!readBmp(file_adres)) return "Error 3"; }	//Bezpośredni odczyt
-			else { if (!readTxt(file_adres)) return "Error 3"; }
+			if (bmp) { if (!readBmp(file_adres)) return "Error2"; }	//Bezpośredni odczyt
+			else { if (!readTxt(file_adres)) return "Error2"; }
 		}
 		else return "Error1";
 	}
-	else return "Error2";
+	else return "Error3";
 
 	return dialog->FileName;	//Zwrócenie błędów lub ścieżki do pliku
 }
@@ -41,7 +41,7 @@ bool FileManager::readBmp(String^ adres)
 
 	FILE* f;	//Zmienna plikowa
 	fopen_s(&f, cfilename, "rb");	//Otwacie w trybie "rb"
-	this->headerInfo = new char[54]; // alokowanie 54 bajtów na header pliku
+	this->headerInfo = new unsigned char[54]; // alokowanie 54 bajtów na header pliku
 	fread(this->headerInfo, sizeof(char), 54, f); // zczytanie headera
 
 	// informacje o rozmiarze obrazu z headera
@@ -51,7 +51,7 @@ bool FileManager::readBmp(String^ adres)
 	size = 3 * width * height;
 	if (size <= 1920 * 1080 * 3 && size > 9)	//Obraz nie może być większy od FHD
 	{
-		bmpData = new char[size]; // 3 bajty na piksel
+		bmpData = new unsigned char[size]; // 3 bajty na piksel
 		fread(bmpData, sizeof(char), size, f); // zczytanie reszty pliku
 		bmpKey = bmpData; //Zachowanie wskaźnika na pierwszy element tablicy
 		success = true;
@@ -89,7 +89,7 @@ int FileManager::getBmpSize() { return this->size; }
 int FileManager::getTxtLength() { return this->txtLenght; }
 
 //Zwraca wskaźnik na klucz
-char* FileManager::getBmpKey() { return this->bmpKey; }
+unsigned char* FileManager::getBmpKey() { return this->bmpKey; }
 
 //Zwraca zawartość pliku tekstowego
 char* FileManager::getText() { return this->txtData; }
@@ -105,15 +105,29 @@ void FileManager::deleteData()
 }
 
 //Zapisanie obrazu do .bmp
-void FileManager::saveBmp(string filename)
+void FileManager::saveBmp(String^ adres)
+{
+	//Konwersja System::String na std::string
+	string loaded_adres_std = msclr::interop::marshal_as<string>(adres);
+	//Konwersja na char*
+	const char *cfilename = loaded_adres_std.c_str();
+
+	//Zapisanie do pliku
+	FILE* f = fopen(cfilename, "wb");
+	fwrite(this->headerInfo, sizeof(unsigned char), 54, f);
+	fwrite(this->bmpData, sizeof(unsigned char), size, f);
+	fclose(f);
+}
+
+//Zapisanie pliku .txt
+void FileManager::saveTxt(string filename)
 {
 	//Konwersja na char*
 	const char *cfilename = filename.c_str();
 
-	// zapisanie do pliku
+	//Zapisanie do pliku
 	FILE* f;
 	fopen_s(&f, cfilename, "wb");
-	fwrite(this->headerInfo, sizeof(unsigned char), 54, f);
-	fwrite(this->bmpData, sizeof(unsigned char), size, f);
-	fclose(f);
+	fwrite(txtData, sizeof(char), strlen(txtData), f);
+	fclose(f);								//Zamkniêcie pliku
 }
