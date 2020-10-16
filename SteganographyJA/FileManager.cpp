@@ -79,3 +79,9 @@ bool FileManager::readTxt(String^ adres)
 
 	return succes;	//Zwracanie statusu sytuacji
 }
+
+//Zwraca wielkość pliku .bmp
+int FileManager::getBmpSize() { return this->size; }
+
+//Zwraca długość tekstu .txt
+int FileManager::getTxtLength() { return this->txtLenght; }

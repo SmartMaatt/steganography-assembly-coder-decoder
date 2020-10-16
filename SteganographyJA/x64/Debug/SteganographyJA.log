@@ -1,0 +1,5 @@
+﻿  main.cpp
+c:\users\mateusz\source\repos\steganography\steganographyja\myform.h(561): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
+c:\users\mateusz\source\repos\steganography\steganographyja\myform.h(579): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u0142" nie może być przedstawiony w bieżącej stronie kodowej (1252)
+  FileManager.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
+  SteganographyJA.vcxproj -> C:\Users\Mateusz\source\repos\Steganography\x64\Debug\SteganographyJA.exe

@@ -27,6 +27,9 @@ public:
 	bool readBmp(String^ adres);
 	bool readTxt(String^ adres);
 
+	int getBmpSize();
+	int getTxtLength();
+
 	/*
 	void saveBmp(string filename);
 	void saveTxt(string filename);
@@ -36,7 +39,5 @@ public:
 
 	unsigned char* getBmpData();
 	char* getTxtData();
-	int getBmpSize();
-	int getTxtLength();
 	*/
 };
