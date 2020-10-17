@@ -26,7 +26,11 @@ public:
 	FileManager();
 	String^ readFile(System::Object^ sender, System::EventArgs^ e, bool bmp);
 	bool readBmp(String^ adres);
-	bool readTxt(String^ adres);
+	int readTxt(String^ adres);
+
+	String^ saveFile(System::Object^ sender, System::EventArgs^ e, bool bmp);
+	void saveBmp(String^ adres);
+	void saveTxt(String^ adres);
 
 	int getBmpSize();
 	int getTxtLength();
@@ -34,8 +38,5 @@ public:
 	char* getText();
 	void increseBmpKey();
 
-	void deleteData();
-	void saveBmp(String^ adres);
-	void saveTxt(string filename);
-
+	void deleteData(bool bmp, bool txt);
 };

@@ -20,14 +20,15 @@ Class FileManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     readFile(Object, EventArgs, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
     readBmp(String): PrivateScope, Public, HideBySig
     readTxt(String): PrivateScope, Public, HideBySig
+    saveFile(Object, EventArgs, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    saveBmp(String): PrivateScope, Public, HideBySig
+    saveTxt(String): PrivateScope, Public, HideBySig
     getBmpSize(): PrivateScope, Public, HideBySig
     getTxtLength(): PrivateScope, Public, HideBySig
     getBmpKey(): PrivateScope, Public, HideBySig
     getText(): PrivateScope, Public, HideBySig
     increseBmpKey(): PrivateScope, Public, HideBySig
-    deleteData(): PrivateScope, Public, HideBySig
-    saveBmp(String): PrivateScope, Public, HideBySig
-    saveTxt(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig
+    deleteData(Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
 Class AlgorythmManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
