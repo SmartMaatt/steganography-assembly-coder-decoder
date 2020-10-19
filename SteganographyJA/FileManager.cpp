@@ -3,6 +3,13 @@
 //Konstruktor klasy FileManager
 FileManager::FileManager()
 {
+	this->bmpData = nullptr;
+	this->headerInfo = nullptr;
+	this->txtData = nullptr;
+	this->height = 0;
+	this->width = 0;
+	this->size = 0;
+	this->txtLenght = 0;
 }
 
 //Funkcja odczytująca pliki bmp lub txt w zależności od przekazanych przełączników
@@ -58,7 +65,6 @@ bool FileManager::readBmp(String^ adres)
 	{
 		bmpData = new unsigned char[size]; // 3 bajty na piksel
 		fread(bmpData, sizeof(char), size, f); // zczytanie reszty pliku
-		bmpKey = bmpData; //Zachowanie wskaźnika na pierwszy element tablicy
 		success = true;
 	}
 	else delete[] headerInfo; //Zwolnienie pamięci headerInfo
@@ -77,7 +83,7 @@ int FileManager::readTxt(String^ adres)
 
 	if (loaded_file_std.length() < 1) return -1;
 
-	if(loaded_file_std.length() < (this->size)/8)	//Sprawdzenie czy tekst zmieści się w zdjęciu
+	if(loaded_file_std.length() < (((this->size)-24)/8))	//Sprawdzenie czy tekst zmieści się w zdjęciu
 	{
 		this->txtData = new char[loaded_file_std.length() + 1];	//Alokacja miejsca na tekst
 		strcpy(this->txtData, loaded_file_std.c_str());	//Przypisanie wartosci do char*
@@ -158,13 +164,56 @@ int FileManager::getBmpSize() { return this->size; }
 int FileManager::getTxtLength() { return this->txtLenght; }
 
 //Zwraca wskaźnik na klucz
-unsigned char* FileManager::getBmpKey() { return this->bmpKey; }
+unsigned char* FileManager::getBmpKey(int index) { return this->bmpData + (8 * index); }
+
+//Zwraca wskaźnik na bitmapę
+unsigned char* FileManager::getBmpData() { return this->bmpData; }
 
 //Zwraca zawartość pliku tekstowego
 char* FileManager::getText() { return this->txtData; }
 
-//Przesuwa wskaźnik na klucz
-void FileManager::increseBmpKey() { this->bmpKey = this->bmpKey + 8; }
+//Koduje informacje o długości tekstu na pierwszych 24 bitach pliku
+void FileManager::encodeTextLength()
+{
+	//Długość tekstu zakodowana do postaci binarnej
+	std::bitset<24> txtLengthBits = std::bitset<24>(this->txtLenght);
+	//Zmienna tymczasowa na bity zdjecia
+	std::bitset<8> bmpBits;
+	//Schowek na wskaźnik na początek tablicy znaków
+	unsigned char* tmpBmpKey = this->bmpData;
+
+	//Pętla szyfrująca dane o długości łańcucha na pierwszych 24 bitach do wykorzystania
+	for (int i = 0; i < 24; i++) 
+	{
+		bmpBits = std::bitset<8>(tmpBmpKey[i]);
+		bmpBits[0] = txtLengthBits[i];
+		this->bmpData[i] = static_cast<unsigned char>(bmpBits.to_ulong());
+	}
+}
+
+//Dekoduje informacje o długości tekstu z 24 pierwszych 24 bitów pliku i alokuje pamięć na nią
+void FileManager::decodeTextLength()
+{
+	//Pojemnik na długość tekstu zakodowaną do postaci binarnej
+	std::bitset<24> txtLengthBits;
+	//Zmienna tymczasowa na bity zdjecia
+	std::bitset<8> bmpBits;
+	//Schowek na wskaźnik na początek tablicy znaków
+	unsigned char* tmpBmpKey = this->bmpData;
+
+	//Pętla odszyfrowująca dane o długości łańcucha na pierwszych 24 bitach do wykorzystania
+	for (int i = 0; i < 24; i++)
+	{
+		bmpBits = std::bitset<8>(tmpBmpKey[i]);
+		txtLengthBits[i] = bmpBits[0];
+	}
+
+	//Wpisanie długości tesktu do zmiennej w postaci int
+	this->txtLenght = static_cast<int>(txtLengthBits.to_ulong());
+
+	this->txtData = new char[this->txtLenght + 1];	//Alokacja miejsca na tekst
+	this->txtData[this->txtLenght] = '\0';	//Dodanie znaku końca łańcucha
+}
 
 //Usuwa dynamicznie zaalokowaną pamięć
 void FileManager::deleteData(bool bmp, bool txt)
@@ -174,7 +223,6 @@ void FileManager::deleteData(bool bmp, bool txt)
 		this->width = 0;
 		this->height = 0;
 		this->size = 0;
-		this->bmpKey = nullptr;
 		if (this->headerInfo) 
 		{
 			delete[] this->headerInfo; 

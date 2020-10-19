@@ -25,9 +25,11 @@ Class FileManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     saveTxt(String): PrivateScope, Public, HideBySig
     getBmpSize(): PrivateScope, Public, HideBySig
     getTxtLength(): PrivateScope, Public, HideBySig
-    getBmpKey(): PrivateScope, Public, HideBySig
+    getBmpData(): PrivateScope, Public, HideBySig
+    getBmpKey(Int32): PrivateScope, Public, HideBySig
     getText(): PrivateScope, Public, HideBySig
-    increseBmpKey(): PrivateScope, Public, HideBySig
+    encodeTextLength(): PrivateScope, Public, HideBySig
+    decodeTextLength(): PrivateScope, Public, HideBySig
     deleteData(Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
 Class AlgorythmManager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <string>
+#include <bitset>
 #include <direct.h>
 #include <msclr\marshal_cppstd.h>
 
@@ -20,7 +21,7 @@ public ref class FileManager
 private:
 	int width, height, size, txtLenght;
 	char *txtData;
-	unsigned char *bmpData, *bmpKey, *headerInfo;
+	unsigned char *bmpData, *headerInfo;
 
 public:
 	FileManager();
@@ -34,9 +35,13 @@ public:
 
 	int getBmpSize();
 	int getTxtLength();
-	unsigned char* getBmpKey();
+
+	unsigned char* getBmpData();
+	unsigned char* getBmpKey(int index);
 	char* getText();
-	void increseBmpKey();
+
+	void encodeTextLength();
+	void decodeTextLength();
 
 	void deleteData(bool bmp, bool txt);
 };
