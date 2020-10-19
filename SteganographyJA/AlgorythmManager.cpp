@@ -13,12 +13,13 @@ void AlgorythmManager::operateDecode(Object^ parameter)
 
 	if (params->Item2) // jeœli wybrano bibliotekê cpp
 	{
-		std::cout << "Leci cpp kodowanie " << fileMan->getText()[params->Item3] << std::endl;
 		cppSteganographyDecode(fileMan->getBmpKey(params->Item3), fileMan->getText(), (params->Item3) - 3);
 	}
-	else
-		std::cout << "Leci asm kodowanie " << fileMan->getText()[params->Item3] << std::endl;
-	//asmSteganographyEncode();
+	else 
+	{
+		cppSteganographyEncode(fileMan->getBmpKey(params->Item3), fileMan->getText()[(params->Item3) - 3]);
+		//asmSteganographyEncode();
+	}
 }
 
 //Funkcja zarządzająca wywołaniem funkcji kodowania c++ lub asm
@@ -29,10 +30,11 @@ void AlgorythmManager::operateEncode(Object^ parameter)
 
 	if (params->Item2) // jeœli wybrano bibliotekê cpp
 	{
-		std::cout << "Leci cpp kodowanie " << params->Item3 << std::endl;
 		cppSteganographyEncode(fileMan->getBmpKey(params->Item3), fileMan->getText()[(params->Item3)-3]);
 	}
-	else
-		std::cout << "Leci asm kodowanie " << fileMan->getText()[params->Item3] << std::endl;
+	else 
+	{
+		cppSteganographyEncode(fileMan->getBmpKey(params->Item3), fileMan->getText()[(params->Item3) - 3]);
 		//asmSteganographyEncode();
+	}
 }
