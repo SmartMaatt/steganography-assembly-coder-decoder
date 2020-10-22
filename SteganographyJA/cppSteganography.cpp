@@ -1,12 +1,12 @@
 #include "cppSteganography.h"
 
 // funkcja odpowiedzialna za zapisanie przekazanego tekstu do tablicy pikseli obrazu
-void cppSteganographyEncode(unsigned char* bmpKey, char symbol)
+void cppSteganographyEncode(unsigned char* bmpKey, char* symbol)
 {
 	int k = 0;
 
 		// zamiana znaku na tablicê bitów
-		std::bitset<8> txtBits = std::bitset<8>(symbol);
+		std::bitset<8> txtBits = std::bitset<8>(*symbol);
 		// zamiana 8 danych z tablicy wartoœci rgb na tablicê bitów,
 		// tyle jest wtmaganych aby zakodowaæ jeden znak
 		std::bitset<8> bmpBits1 = std::bitset<8>(bmpKey[k]);
@@ -40,7 +40,7 @@ void cppSteganographyEncode(unsigned char* bmpKey, char symbol)
 }
 
 // funkcja dekoduje zapisane w obrazie znaki do tablicy znaków, aby uzyskaæ tekst
-void cppSteganographyDecode(unsigned char* bmpData, char* txtData, int index)
+void cppSteganographyDecode(unsigned char* bmpKey, char* symbol)
 {
 	// zamiana znaku na wartoœæ bitow¹ 
 	int k = 0;
@@ -48,14 +48,14 @@ void cppSteganographyDecode(unsigned char* bmpData, char* txtData, int index)
 	std::bitset<8> txtBits = std::bitset<8>(txtChar);
 
 		// zamiana wartoœci obrazu na wartoœæ bitow¹
-		std::bitset<8> bmpBits1 = std::bitset<8>(bmpData[k++]);
-		std::bitset<8> bmpBits2 = std::bitset<8>(bmpData[k++]);
-		std::bitset<8> bmpBits3 = std::bitset<8>(bmpData[k++]);
-		std::bitset<8> bmpBits4 = std::bitset<8>(bmpData[k++]);
-		std::bitset<8> bmpBits5 = std::bitset<8>(bmpData[k++]);
-		std::bitset<8> bmpBits6 = std::bitset<8>(bmpData[k++]);
-		std::bitset<8> bmpBits7 = std::bitset<8>(bmpData[k++]);
-		std::bitset<8> bmpBits8 = std::bitset<8>(bmpData[k++]);
+		std::bitset<8> bmpBits1 = std::bitset<8>(bmpKey[k++]);
+		std::bitset<8> bmpBits2 = std::bitset<8>(bmpKey[k++]);
+		std::bitset<8> bmpBits3 = std::bitset<8>(bmpKey[k++]);
+		std::bitset<8> bmpBits4 = std::bitset<8>(bmpKey[k++]);
+		std::bitset<8> bmpBits5 = std::bitset<8>(bmpKey[k++]);
+		std::bitset<8> bmpBits6 = std::bitset<8>(bmpKey[k++]);
+		std::bitset<8> bmpBits7 = std::bitset<8>(bmpKey[k++]);
+		std::bitset<8> bmpBits8 = std::bitset<8>(bmpKey[k++]);
 
 		// wprowadzenie danych z obrazu do danych znaku
 		txtBits[0] = bmpBits1[0];
@@ -67,5 +67,5 @@ void cppSteganographyDecode(unsigned char* bmpData, char* txtData, int index)
 		txtBits[6] = bmpBits7[0];
 		txtBits[7] = bmpBits8[0];
 
-		txtData[index] = static_cast<char>(txtBits.to_ulong()); // zamiana wartoœci bitowej na znak
+		*symbol = static_cast<char>(txtBits.to_ulong()); // zamiana wartoœci bitowej na znak
 }

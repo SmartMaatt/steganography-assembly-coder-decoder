@@ -5,7 +5,8 @@
 #include "FileManager.h"
 #include "cppSteganography.h"
 
-/*TUTAJ BĘDZIE IMPLEMENTACJA FUNKCJI ASM*/
+extern "C" void asmSteganographyEncode(unsigned char* bmpKey, char* symbol);
+extern "C" void asmSteganographyDecode(unsigned char* bmpKey, char* symbol);
 
 using namespace std;
 using namespace System;

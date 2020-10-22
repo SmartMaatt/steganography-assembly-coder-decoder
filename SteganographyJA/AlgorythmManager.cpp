@@ -13,12 +13,11 @@ void AlgorythmManager::operateDecode(Object^ parameter)
 
 	if (params->Item2) // jeœli wybrano bibliotekê cpp
 	{
-		cppSteganographyDecode(fileMan->getBmpKey(params->Item3), fileMan->getText(), (params->Item3) - 3);
+		cppSteganographyDecode(fileMan->getBmpKey(params->Item3), &(fileMan->getText()[(params->Item3) - 3]));
 	}
 	else 
 	{
-		cppSteganographyEncode(fileMan->getBmpKey(params->Item3), fileMan->getText()[(params->Item3) - 3]);
-		//asmSteganographyEncode();
+		asmSteganographyDecode(fileMan->getBmpKey(params->Item3), &(fileMan->getText()[(params->Item3) - 3]));
 	}
 }
 
@@ -30,11 +29,10 @@ void AlgorythmManager::operateEncode(Object^ parameter)
 
 	if (params->Item2) // jeœli wybrano bibliotekê cpp
 	{
-		cppSteganographyEncode(fileMan->getBmpKey(params->Item3), fileMan->getText()[(params->Item3)-3]);
+		cppSteganographyEncode(fileMan->getBmpKey(params->Item3), &(fileMan->getText()[(params->Item3)-3]));
 	}
 	else 
 	{
-		cppSteganographyEncode(fileMan->getBmpKey(params->Item3), fileMan->getText()[(params->Item3) - 3]);
-		//asmSteganographyEncode();
+		asmSteganographyEncode(fileMan->getBmpKey(params->Item3), &(fileMan->getText()[(params->Item3) - 3]));
 	}
 }

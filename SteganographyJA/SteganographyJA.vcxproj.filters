@@ -47,4 +47,14 @@
       <Filter>Pliki zasobów</Filter>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="asmLib.def">
+      <Filter>Pliki nagłówkowe</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="asmSteganography.asm">
+      <Filter>Pliki źródłowe</Filter>
+    </MASM>
+  </ItemGroup>
 </Project>
