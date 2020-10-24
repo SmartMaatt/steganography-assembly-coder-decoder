@@ -24,7 +24,7 @@ void cppSteganographyEncode(unsigned char* bmpKey, char* symbol)
 		bmpBits3[0] = txtBits[2];
 		bmpBits4[0] = txtBits[3];
 		bmpBits5[0] = txtBits[4];
-		bmpBits6[0] = txtBits[5];
+		bmpBits6[0] = txtBits[5]; 
 		bmpBits7[0] = txtBits[6];
 		bmpBits8[0] = txtBits[7];
 

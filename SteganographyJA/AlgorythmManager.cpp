@@ -26,6 +26,7 @@ void AlgorythmManager::operateEncode(Object^ parameter)
 {
 	Tuple<FileManager^, bool, int>^ params = (Tuple<FileManager^, bool, int>^) parameter; // krotka z parametrami
 	FileManager^ fileMan = params->Item1;
+	int index = (params->Item3);
 
 	if (params->Item2) // jeœli wybrano bibliotekê cpp
 	{
