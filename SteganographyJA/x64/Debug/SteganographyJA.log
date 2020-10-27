@@ -1,6 +1,6 @@
 ﻿  Assembling asmSteganography.asm...
 asmSteganography.asm(28): warning A6004: procedure argument or local not referenced : C
-asmSteganography.asm(83): warning A6004: procedure argument or local not referenced : C
-asmSteganography.asm(133): warning A6004: procedure argument or local not referenced : C
+asmSteganography.asm(71): warning A6004: procedure argument or local not referenced : C
+asmSteganography.asm(113): warning A6004: procedure argument or local not referenced : C
   AlgorythmManager.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
   SteganographyJA.vcxproj -> C:\Users\Mateusz\source\repos\Steganography\x64\Debug\SteganographyJA.exe

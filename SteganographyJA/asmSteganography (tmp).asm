@@ -1,4 +1,4 @@
-.CODE
+CODE
 
 checkMMXCapability PROC C
 	push rbx			; Zapisz RBX
@@ -30,7 +30,6 @@ CheckMMXCapability ENDP
 
 ;RCX - bmpKey, wskaznik na bitmape od momentu w ktorym ma zostac odczytana
 ;RDX - symbol, znak z tekstu do zakodowania w zdjeciu
-;R8 - index to move memory
 ;void asmStegonagraphyEncode(char* bmpKey, char* symbol)
 asmSteganographyEncode PROC C 
 	
@@ -44,36 +43,34 @@ asmSteganographyEncode PROC C
 	mov RBX, RCX
 
 	xor RCX, RCX
-	mov CL, 01111111b
+	mov CL, 11111110b
 	mov CH, 8 
 
 LetterLoop:
-	shl RAX, 8
 	mov AL, [RDX]
+	mov AH, [RBX]
 
 	or AL, CL
 	cmp AL, 11111111b
 	je wasOne
 
-	xor AL, AL
+	and AH, 11111110b
 	jmp continue
 
 wasOne:
-	mov AL, 1;
+	or ah, 00000001b
 
-continue:	
-	shr CL, 1
-	or CL, 10000000b
+continue:
+	mov [RBX], AH
+	inc RBX
+	mov AH, [RBX]
+	mov AL, [RDX]
+	shl CL, 1
+	or CL, 00000001
 
 	dec CH
 	cmp CH, 0
 	jne LetterLoop
-
-	movq mm0, qword ptr[RBX]
-	movq mm1, RAX
-	por mm0, mm1
-	movq qword ptr[RBX], mm0
-	emms
 
 endProc:
 
@@ -86,32 +83,41 @@ endProc:
 asmSteganographyEncode ENDP
 
 
+;RCX - bmpKey, wskaznik na bitmape od momentu w ktorym ma zostac odczytana
+;RDX - symbol, znak z tekstu do zakodowania w zdjeciu
+;void asmStegonagraphyEncode(char* bmpKey, char* symbol)
 asmSteganographyDecode PROC C ;bmpKey, symbol
 
-push rax			;zawartosc rejestrow idzie na stos
+	push rax			;zawartosc rejestrow idzie na stos
 	push rbx
 	push rcx
 	push rdx
 	
 	xor RAX, RAX		;czyszczenie RAX (Schowek na rozbity znak)
+	xor RBX, RBX
 	mov RBX, RCX
+
 	xor RCX, RCX
-	mov CL, 7
+	mov CL, 00000001b
+	mov CH, 8 
 
 LetterLoop:
-	dec CL
-	shl AL, 1
-
 	mov AH, [RBX]
+
 	or AH, 11111110b
 	cmp AH, 11111111b
-	jne NotEqual
+	je wasOne
+	jmp continue
 
-	or AL, 00000001b
+wasOne:
+	or AL, CL
 
-NotEqual:
+continue:
 	inc RBX
-	cmp CL, 0
+	shl CL, 1
+
+	dec CH
+	cmp CH, 0
 	jne LetterLoop
 
 	mov [RDX], AL
