@@ -84,19 +84,16 @@ asmSteganographyDecode PROC C
 	xor RBX, RBX		;czyszczenie RBX (Schowek na wskaznik na bitmape)
 	xor RCX, RCX		;czyszczenie RCX (Schowek na licznik petli)
 
-ResetLoop:
-	shl RAX, 8			;przesuniecie bitowe o 8 w lewo
 	mov AL, 00000001b	;wprowadzenie bitow resetu
-	inc CL				;inkrementuj CL
-	cmp CL, 8			;zakoncz petle gdy wykona 8 powtorzen
-	jne ResetLoop		;skok na poczatek petli
+	modv mm1, RAX		;pobranie linii resetu do mm1
+	punpckldq mm1, mm1	;rozbicie bajtow na wszystkie wartosci rejestru
+	packssdw mm1, mm1	;tzw (broadcast)
+	packuswb mm1,mm1
 
-	movq mm1, RAX		;pobranie linii resetu do mm1
 	pand mm0, mm1		;pozostawienie jedynie danych tekstu
 	movq RBX, mm0		;pobranie bitow z mm0 do RBX
 	emms				;czyszczenie mmx po wykorzystaniu
 	xor RAX, RAX		;czyszczenie RAX
-	xor RCX, RCX		;czyszczenie RCX
 
 TextLoop:
 	inc CL				;zwiekszenie licznika
