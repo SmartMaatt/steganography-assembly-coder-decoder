@@ -18,5 +18,3 @@ Główną ideą realizowanego projektu było stworzenie programu, opartego na sy
 * Algorytmy: C++ / C / Asm mmx
 
 Dodatkowo aplikacja pozwala użytkownikowi na wybór algorytmu szyfrowania (przy użyciu języka wysokiego i niskiego poziomu) oraz ilości wątków procesora wykonujących zadanie. Umożliwia to na pełną swobodę użytkowania i wybór mocy obliczeniowej posiadanej maszyny.
-
-Przetłumaczono z www.DeepL.com/Translator (wersja darmowa)
