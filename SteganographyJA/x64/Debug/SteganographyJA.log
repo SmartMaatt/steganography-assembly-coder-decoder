@@ -1,6 +1,1 @@
-﻿  Assembling asmSteganography.asm...
-asmSteganography.asm(88): error A2008: syntax error : mm1
-asmSteganography.asm(28): warning A6004: procedure argument or local not referenced : C
-asmSteganography.asm(71): warning A6004: procedure argument or local not referenced : C
-asmSteganography.asm(110): warning A6004: procedure argument or local not referenced : C
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\BuildCustomizations\masm.targets(69,5): error MSB3721: Polecenie ml64.exe /c /nologo /Zi /Fo"x64\Debug\asmSteganography.obj" /W3 /errorReport:prompt  /TaasmSteganography.asm zostało zakończone; kod błędu: 1.
+﻿  SteganographyJA.vcxproj -> H:\Polsl\JA\Projekt Steganografia\Steganography\x64\Debug\SteganographyJA.exe

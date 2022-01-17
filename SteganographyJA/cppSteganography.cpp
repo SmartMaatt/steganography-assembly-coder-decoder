@@ -1,6 +1,6 @@
 #include "cppSteganography.h"
 
-// funkcja odpowiedzialna za zapisanie przekazanego tekstu do tablicy pikseli obrazu
+//Funkcja odpowiedzialna za zapisanie przekazanego tekstu do tablicy pikseli obrazu
 void cppSteganographyEncode(unsigned char* bmpKey, char* symbol)
 {
 	int k = 0;

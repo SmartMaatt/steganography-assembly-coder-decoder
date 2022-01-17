@@ -85,7 +85,7 @@ asmSteganographyDecode PROC C
 	xor RCX, RCX		;czyszczenie RCX (Schowek na licznik petli)
 
 	mov AL, 00000001b	;wprowadzenie bitow resetu
-	modv mm1, RAX		;pobranie linii resetu do mm1
+	movq mm1, RAX		;pobranie linii resetu do mm1
 	punpckldq mm1, mm1	;rozbicie bajtow na wszystkie wartosci rejestru
 	packssdw mm1, mm1	;tzw (broadcast)
 	packuswb mm1,mm1
